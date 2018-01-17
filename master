@@ -1,0 +1,207 @@
+from decimal import *
+import locale
+
+__author__ = "Sebastian Bensing"
+__version__ = "1.0"
+
+locale.setlocale(locale.LC_ALL, 'de-DE')
+getcontext().prec = 4
+
+greeting = "Ticketautomat\nProgrammiert von "+__author__+" in der Version "+__version__
+money50 = 200
+money20 = 0
+money10 = 200
+money5 = 200
+money2 = 200
+money1 = 200
+money0_5 = 200
+money0_2 = 200
+money0_1 = 200
+money0_05 = 200
+money0_02 = 200
+money0_01 = 200
+
+restart = True
+while restart:
+    change = Decimal(0)
+    numbernote50 = 0
+    numbernote20 = 0
+    numbernote10 = 0
+    numbernote5 = 0
+    numbernote1 = 0
+    numbernote2 = 0
+    numbernote0_5 = 0
+    numbernote0_2 = 0
+    numbernote0_1 = 0
+    numbernote0_05 = 0
+    numbernote0_02 = 0
+    numbernote0_01 = 0
+    print(greeting)
+
+    inputtopay = True
+    while inputtopay:
+        try:
+            topay = Decimal(input("\nBitte geben sie den Ticketpreis in Euro ein:   "))
+            if topay <= 0:
+                print("Bitte geben sie einen neuen Betrag ein.\nDiese liegt nicht zwischen dem Berech 0 - +∞")
+                continue
+        except:
+            print("Bitte geben sie einen neuen Betrag ein.\nDies ist keine Zahl.")
+            continue
+        inputtopay = False
+
+
+    money232 = True
+    while money232:
+        try:
+            money = Decimal(input("Bitte geben sie den Geldbetrag in Euro ein:   "))
+            if money <= 0 and money >= 100:
+                print("Bitte geben sie einen neuen Betrag ein.\nDiese liegt nicht zwischen dem Berech 0 - 100")
+                continue
+        except:
+            print("Bitte geben sie einen neuen Betrag ein.\nDies ist keine Zahl.")
+            continue
+        money232 = False
+
+    changeexactly = money-topay
+
+    # note 50
+    while change < changeexactly and money50 > 0:
+        change += Decimal(50)
+        numbernote50 +=1
+        money50 -=1
+    if change > changeexactly:
+        change -=Decimal(50)
+        numbernote50 -=1
+        money50 +=1
+
+    # note 20
+    while change < changeexactly and money20 > 0:
+        change +=Decimal( 20)
+        numbernote20 +=1
+        money20 -=1
+    if change > changeexactly:
+        change -=Decimal(20)
+        numbernote20 -=1
+        money20 +=1
+
+    # note 10
+    while change < changeexactly and money10 > 0:
+        change +=Decimal( 10)
+        numbernote10 +=1
+        money10 -=1
+    if change > changeexactly:
+        change -=Decimal(10)
+        numbernote10 -=1
+        money10 +=1
+
+    # note 5
+    while change < changeexactly and money5 > 0:
+        change +=Decimal( 5)
+        numbernote5 +=1
+        money5 -=1
+    if change > changeexactly:
+        change -=Decimal(5)
+        numbernote5 -=1
+        money5 +=1
+
+    # note 2
+    while change < changeexactly and money2 > 0:
+        change +=Decimal( 2)
+        numbernote2 +=1
+        money2 -=1
+    if change > changeexactly:
+        change -=Decimal(2)
+        numbernote2 -=1
+        money2 +=1
+
+    # note 1
+    while change < changeexactly and money1 > 0:
+        change += Decimal(1)
+        numbernote1 +=1
+        money1 -=1
+    if change > changeexactly:
+        change -=Decimal(1)
+        numbernote1 -=1
+        money1 +=1
+
+    # note 0,5
+    while change < changeexactly and money0_5 > 0:
+        change += Decimal(0.5)
+        numbernote0_5 +=1
+        money0_5 -=1
+    if change > changeexactly:
+        change -=Decimal(0.5)
+        numbernote0_5 -=1
+        money0_5 +=1
+
+    # note 0,2
+    while change < changeexactly and money0_2 > 0:
+        change +=Decimal( 0.2)
+        numbernote0_2 +=1
+        money0_2 -=1
+    if change > changeexactly:
+        change -=Decimal(0.2)
+        numbernote0_2 -=1
+        money0_2 +=1
+
+    # note 0,1
+    while change < changeexactly and money0_1 > 0:
+        change += Decimal(0.1)
+        numbernote0_1 +=1
+        money0_1 -=1
+    if change > changeexactly:
+        change -=Decimal(0.1)
+        numbernote0_1 -=1
+        money0_1 +=1
+
+    # note 0,05
+    while change < changeexactly and money0_05 > 0:
+        change += Decimal(0.05)
+        numbernote0_05 +=1
+        money0_05 -=1
+    if change > changeexactly:
+        change -=Decimal(0.05)
+        numbernote0_05 -=1
+        money0_05 +=1
+
+    # note 0,02
+    while change < changeexactly and money0_02 > 0:
+        change += Decimal(0.02)
+        numbernote0_02 +=1
+        money0_02 -=1
+    if change > changeexactly:
+        change -=Decimal(0.02)
+        numbernote0_02 -=1
+        money0_02 +=1
+
+    # note 0,01
+    while change < changeexactly and money0_01 > 0:
+        change += Decimal(0.01)
+        numbernote0_01 +=1
+        money0_01 -=1
+    if change > changeexactly:
+        change -= Decimal(0.01)
+        numbernote0_01 -=1
+        money0_01 +=1
+
+
+    # spending
+    print("Das Wechselgeld beträgt:  "+str(change))
+    print("Das exakte Wechselgeld beträgt:  "+str(changeexactly))
+    print("Es wurden folgene Scheine und Münzen verwendet:\n")
+    print("50er: "+str(numbernote50)+"    20er: "+str(numbernote20)+"    10er: "+str(numbernote10))
+    print("5er: "+str(numbernote5)+"    2er: "+str(numbernote2)+"    1er: "+str(numbernote1))
+    print("0,5er: "+str(numbernote0_5)+"    0,2er: "+str(numbernote0_2)+"    0,1er: "+str(numbernote0_1))
+    print("0,05er: "+str(numbernote0_05)+"    0,02er: "+str(numbernote0_02)+"    0,01er: "+str(numbernote0_01))
+    print("\n\nDer Geldbestand beträgt:\n")
+    print("50er: "+str(money50)+"    20er: "+str(money20)+"    10er: "+str(money10))
+    print("5er: "+str(money5)+"    2er: "+str(money2)+"    1er: "+str(money1))
+    print("0,5er: "+str(money0_5)+"    0,2er: "+str(money0_2)+"    0,1er: "+str(money0_1))
+    print("0,05er: "+str(money0_05)+"    0,02er: "+str(money0_02)+"    0,01er: "+str(money0_01))
+
+
+    restart2 = input("\n\nWenn sie ein weiters Ticket ziehen wollen bitte ein 'y':  ")
+    if restart2 != "y":
+        restart = False
+        print("Das Programm wurde ordungsgemäß beendet")
